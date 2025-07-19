@@ -39,6 +39,29 @@ html, body {
   position: relative;
 }
 
+#login{
+  padding: 6rem;
+}
+
+#loginbox{
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  /* margin-bottom: ; */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  margin-left: 37%;
+  margin-right: 37%;
+  /* margin: 13rem; */
+  border: black solid 2px;
+  text-align: center;
+  border-radius: 20px;
+  
+    
+}
 
 /* Shared Button Style */
 .btn {
@@ -70,12 +93,17 @@ html, body {
   color: white;
 }
 
+#askpage{
+  padding-top: 0.5rem;
+}
 /* Ask Page */
 #askfield {
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   max-width: 800px;
   margin: auto;
   text-align: left;
+  border: 1px solid black;
+  /* padding-left: 1rem; */
 }
 
 textarea {
@@ -91,11 +119,13 @@ textarea {
 #eachquestion {
   text-align: left;
   border: 1px solid #ccc;
-  margin: 1rem 0;
+  margin: 1rem 8rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: gray;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
 }
 
 #qhead {
@@ -108,7 +138,7 @@ textarea {
 
 #reply {
   background-color: #edf2f7;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 6px;
   padding: 0.75rem 1rem;
 }
@@ -161,5 +191,70 @@ html {
   .btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Admin Page */
+#adminpage {
+  padding: 2rem 1rem;
+  /* max-width: 960px; */
+  margin: auto;
+  
+}
+
+.admin-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+/* .admin-question-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+} */
+
+/* .admin-label {
+  font-weight: bold;
+  color: #2d3748;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+} */
+
+.admin-content {
+  background-color: #f7fafc;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Delete Button Style */
+.btn.danger {
+  border: 1px solid red;
+  color: red;
+  background-color: transparent;
+  transition: 0.3s ease;
+}
+
+.btn.danger:hover {
+  background-color: #ffe5e5;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .admin-actions {
+    flex-direction: column;
   }
 }

@@ -29,7 +29,8 @@ const Nav = () => {
           </Typography>
           <Link to={'/'} ><Button className="btn" color="inherit" variant='contained'>Home</Button></Link>&nbsp;
           <Link to={'/ask'} ><Button className="btn" color="inherit" variant='contained'>Ask</Button></Link>&nbsp;
-          <Link to={'/qa'} ><Button className="btn" color="inherit" variant='contained'>View</Button></Link>
+          <Link to={'/qa'} ><Button className="btn" color="inherit" variant='contained'>View</Button></Link>&nbsp;
+          <Link to={'/login'} ><Button className="btn" color="inherit" variant='contained'>Admin</Button></Link>
         </Toolbar>
       </AppBar>
     </Box>

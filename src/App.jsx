@@ -8,6 +8,7 @@ import Qa from "./pages/Qa";
 import Admin from "./pages/Admin"; // 👈 new
 import Nav from "./pages/Nav";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
  function App() {
   return (
@@ -19,6 +20,7 @@ import Home from "./pages/Home";
         <Route path="/qa" element={<Qa />} />
         <Route path="/admin" element={<Admin />} /> {/* new */}
         <Route path="/home" element={<Home />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </div>
 

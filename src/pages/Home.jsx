@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Nav from './Nav'
 
 const Home = () => {
@@ -18,7 +18,8 @@ const Home = () => {
         <br/>
        <div>
        <Link to={'/ask'} ><Button className="btn" color="inherit" >Ask</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-        <Link to={'/qa'} ><Button className="btn" color="inherit">View</Button></Link>
+        <Link to={'/qa'} ><Button className="btn" color="inherit">View</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/login'} ><Button className="btn" color="inherit">Admin</Button></Link>
        </div>
        <br /><br />
        <footer id="footer">

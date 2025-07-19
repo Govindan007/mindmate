@@ -7,14 +7,17 @@ import {
   onSnapshot,
   doc,
   updateDoc,
-  deleteDoc, // ✅ Import deleteDoc
+  deleteDoc
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 export default function Admin() {
   const [questions, setQuestions] = useState([]);
   const [reply, setReply] = useState({});
   const [status, setStatus] = useState({});
+  const [editMode, setEditMode] = useState({}); // Tracks which reply is being edited
 
   useEffect(() => {
     const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
@@ -33,6 +36,7 @@ export default function Admin() {
       });
       setStatus((s) => ({ ...s, [id]: "done" }));
       setReply((r) => ({ ...r, [id]: "" }));
+      setEditMode((e) => ({ ...e, [id]: false }));
     } catch (err) {
       console.error(err);
       setStatus((s) => ({ ...s, [id]: "err" }));
@@ -40,67 +44,83 @@ export default function Admin() {
   };
 
   const deleteQuestion = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this question?")) return;
     try {
       await deleteDoc(doc(db, "questions", id));
-      console.log(`Deleted question with id: ${id}`);
     } catch (err) {
-      console.error("Error deleting document:", err);
+      console.error("Delete failed:", err);
     }
   };
 
+  const startEdit = (id, currentReply) => {
+    setReply((r) => ({ ...r, [id]: currentReply }));
+    setEditMode((e) => ({ ...e, [id]: true }));
+  };
+
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Counselor Dashboard</h1>
+    <div id="adminpage">
+      <h1 className="admin-heading">🧑‍💼 Counselor Dashboard</h1>
       {questions.map((q) => (
-        <div
-          key={q.id}
-          className="mb-8 border border-gray-400 rounded p-4 shadow"
-        >
-          <p className="font-semibold mb-1">🧠 Question:</p>
-          <p className="mb-3">{q.text}</p>
+        <div key={q.id} id="eachquestion">
+          <p id="qhead">🧠 Question:</p>
+          <p id="reply">{q.text}</p>
 
-          <p className="font-semibold mb-1 text-green-700">🤖 AI Reply:</p>
-          <p className="mb-3 whitespace-pre-wrap">
-            {q.aiReply || "AI is thinking…"}
-          </p>
+          <p id="qhead">🤖 AI Reply:</p>
+          <p id="reply">{q.aiReply || "AI is thinking…"}</p>
 
-          <p className="font-semibold mb-1 text-blue-700">👨‍🏫 Your Reply:</p>
-          {q.counselorReply ? (
-            <p className="whitespace-pre-wrap mb-2">{q.counselorReply}</p>
+          <p id="qhead">👨‍🏫 Your Reply:</p>
+          {q.counselorReply && !editMode[q.id] ? (
+            <>
+              <p id="reply">{q.counselorReply}</p>
+              <div className="admin-actions">
+                <Button
+                  className="btn"
+                  variant="outlined"
+                  
+                  onClick={() => startEdit(q.id, q.counselorReply)}
+                >
+                  Edit Reply
+                </Button>
+                <Button
+                  className="btn danger"
+                  variant="outlined"
+                  onClick={() => deleteQuestion(q.id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            </>
           ) : (
             <>
-              <textarea
-                className="border rounded w-full h-24 p-2 mb-2"
+              <TextField
+                multiline
+                minRows={3}
+                maxRows={5}
+                fullWidth
                 placeholder="Type your reply..."
                 value={reply[q.id] || ""}
                 onChange={(e) =>
                   setReply((r) => ({ ...r, [q.id]: e.target.value }))
                 }
               />
-              <button
-                onClick={() => saveReply(q.id)}
-                className="bg-blue-600 text-white rounded py-1 px-4 hover:bg-blue-700"
-              >
-                {status[q.id] === "saving" ? "Saving…" : "Save Reply"}
-              </button>
-              {status[q.id] === "done" && (
-                <span className="text-green-600 ml-2">✔ Saved!</span>
-              )}
-              {status[q.id] === "err" && (
-                <span className="text-red-600 ml-2">✖ Error</span>
-              )}
+              <div className="admin-actions">
+                <Button
+                  className="btn"
+                  variant="contained"
+                  onClick={() => saveReply(q.id)}
+                  disabled={status[q.id] === "saving"}
+                >
+                  {status[q.id] === "saving" ? "Saving…" : "Save Reply"}
+                </Button>
+                <Button
+                  className="btn danger"
+                  variant="outlined"
+                  onClick={() => deleteQuestion(q.id)}
+                >
+                  Delete
+                </Button>
+              </div>
             </>
           )}
-
-          <div className="mt-4">
-            <button
-              onClick={() => deleteQuestion(q.id)}
-              className="bg-red-600 text-white rounded py-1 px-4 hover:bg-red-700"
-            >
-              Delete Question
-            </button>
-          </div>
         </div>
       ))}
     </div>
