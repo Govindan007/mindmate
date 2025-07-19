@@ -1,90 +1,165 @@
-#root {
-  /* max-width: 1280px; */
-  margin: 0 auto;
-  padding: 0rem;
-  text-align: center;
-  display: grid;
-  
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-
-
-#navbutton{
-  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  -webkit-text-fill-color: black;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-left: .5rem;
-  margin-right: .5rem;
-  background-color: lavender;
-}
-
-#homebutton{
-  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  -webkit-text-fill-color: black;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-left: .5rem;
-  margin-right: .5rem;
-  background-color: lavender;
-}
-
-#nav{
-  /* background-color: rgb(70, 32, 32); */
-  text-align: left;
-  opacity: 80%;
-  
-}
-.footer{
-  /* margin-top: %; */
-  /* text-align: ; */
-}
-#askfield {
-padding-left: 9rem;
-padding-bottom: 10rem;
-padding-right: 9rem;
-
-text-align: left;
-
-}
-
-#askbutton{
-
-}
-
-
-#askpage{
-  border: blue solid 5px;
-  
-}
-#eachquestion{
-  text-align: left;
-  border: blue solid 2px;
-  margin: 1rem;
-  padding: 1rem;
-  margin-top: 2rem;
-  border-radius: 10px;
-}
-/* #question{
-  border: rgb(170, 170, 170) solid 2px;
-  border-radius: 10px;
-} */
-#qhead{
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
   margin: 0px;
+  overflow-x: hidden;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Homepage */
+
+#homepage {
+  min-height: calc(100vh - 64px); /* Fill remaining height below navbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  margin-top: 0;         /* Remove top margin */
+  overflow: hidden;      /* Remove scroll */
+  position: relative;
+}
+
+
+/* Shared Button Style */
+.btn {
+  box-shadow: 0 5px 16px rgba(0,0,0,0.24), 0 17px 50px rgba(0,0,0,0.19);
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: .5rem;
+  background-color: white;
+  /* background-color: lavender; */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  -webkit-text-fill-color: black;
+  
+}
+
+.btn:hover {
+  background-color: #e6e6fa;
+  transform: translateY(-2px);
+}
+
+/* Navigation Bar */
+#nav {
+  width: 100%;
+  
+  text-align: left;
+  color: white;
+}
+
+/* Ask Page */
+#askfield {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+/* Questions */
+#eachquestion {
+  text-align: left;
+  border: 1px solid #ccc;
+  margin: 1rem 0;
   padding: 1rem;
   border-radius: 10px;
-  background-color: gray;
-  -webkit-text-fill-color: white;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-#reply{
-  /* border: blue solid 2px; */
-  margin-top: .1rem;
-  border-radius: 10px;
-  padding-left: 1rem;
-  padding-right: .5rem;
-  padding-bottom: .5rem;
-  padding-top: .5rem;
-  /* padding: .5rem; */
-  background-color: rgb(226, 228, 227);
+
+#qhead {
+  background-color: #4a5568;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 6px 6px 0 0;
+  font-weight: bold;
+}
+
+#reply {
+  background-color: #edf2f7;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  background-color: #f0f0f0;
+  margin-top: auto;
+}
+
+/* Responsive Text Scaling */
+@media (max-width: 600px) {
+  #homepage h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #askfield {
+    padding: 1rem;
+  }
+}
+/* Ensure body doesn't scroll on homepage */
+body,
+html {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
+/* Adjust typography on mobile */
+@media (max-width: 480px) {
+  #homepage h1,
+  #homepage .MuiTypography-h2 {
+    font-size: 1.5rem;
+  }
+
+  #homepage .MuiTypography-h5 {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }

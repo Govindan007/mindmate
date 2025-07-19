@@ -27,9 +27,9 @@ const Nav = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             MindMate
           </Typography>
-          <Link to={'/'} ><Button id='navbutton' color="inherit">Home</Button></Link>
-          <Link to={'/ask'} ><Button id='navbutton' color="inherit" >Ask</Button></Link>
-          <Link to={'/qa'} ><Button id='navbutton' color="inherit">View</Button></Link>
+          <Link to={'/'} ><Button className="btn" color="inherit" variant='contained'>Home</Button></Link>&nbsp;
+          <Link to={'/ask'} ><Button className="btn" color="inherit" variant='contained'>Ask</Button></Link>&nbsp;
+          <Link to={'/qa'} ><Button className="btn" color="inherit" variant='contained'>View</Button></Link>
         </Toolbar>
       </AppBar>
     </Box>

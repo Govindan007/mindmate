@@ -5,6 +5,7 @@ import { db } from "../firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 export default function Ask() {
   const [question, setQuestion] = useState("");
@@ -22,9 +23,9 @@ export default function Ask() {
     try {
       await setDoc(doc(collection(db, "questions"), uuidv4()), {
         text: question.trim(),
-        aiReply: null,          // filled by Cloud Function later
-        counselorReply: null,   // filled on /admin page
-        createdAt: serverTimestamp()
+        aiReply: null,
+        counselorReply: null,
+        createdAt: serverTimestamp(),
       });
       setSent(true);
       setQuestion("");
@@ -37,34 +38,42 @@ export default function Ask() {
   };
 
   return sent ? (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold">✅ Question Submitted!</h2>
-      <p>AI is generating a reply. Check back soon.</p>
+    <div className="p-4 flex flex-col items-center justify-center min-h-[60vh]">
+      <h2 className="text-2xl font-bold text-green-600 mb-2">✅ Submitted!</h2>
+      <p className="text-gray-600 text-center">
+        Your anonymous question has been received. AI is generating a reply.
+        Please check back later.
+      </p>
     </div>
   ) : (
     <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Ask a Question</h1>
+      <Typography variant="h4" className="mb-4 font-bold text-blue-700 text-center">
+        Submit Your Concern
+      </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <TextField 
+        <TextField
+          multiline
+          minRows={4}
           id="askfield"
-          variant='outlined'
-          className="border rounded p-2 h-32"
-          placeholder="Type your question..."
+          variant="outlined"
+          placeholder="What's on your mind today? Your identity is never recorded."
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
+          fullWidth
         />
         <br /><br />
-        {error && <p className="text-red-600">{error}</p>}
+        {error && <p className="text-red-600 text-sm">{error}</p>}
         <Button
-          variant='contained' 
-          color="success"
-          id="askbutton"
+          variant="contained"
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white rounded py-2 hover:bg-blue-700"
+          className="btn"
         >
-          {loading ? "Submitting…" : "Submit Anonymously"}
+          {loading ? "Submitting…" : "Ask Anonymously"}
         </Button>
+        <p className="text-xs text-gray-500 text-center mt-1">
+          Your question will be visible to counselors. AI will try to help you instantly.
+        </p>
       </form>
     </div>
   );
