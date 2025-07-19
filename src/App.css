@@ -1,4 +1,4 @@
-/* Global */
+/* Reset and global styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,253 +8,271 @@
 html, body {
   width: 100%;
   height: 100%;
-  padding: 0px;
-  margin: 0px;
-  overflow-x: hidden;
-
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to right, #e0eafc, #cfdef3);
+  overflow-x: hidden;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+/* Navigation */
+#nav {
+  width: 100%;
+  background-color: #333;
+  padding: 1rem;
   text-align: center;
+}
+
+#nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+#nav a:hover {
+  text-decoration: underline;
 }
 
 /* Homepage */
-
 #homepage {
-  min-height: calc(100vh - 64px); /* Fill remaining height below navbar */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   text-align: center;
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
-  margin-top: 0;         /* Remove top margin */
-  overflow: hidden;      /* Remove scroll */
-  position: relative;
+  padding: 2rem;
 }
 
-#login{
-  padding: 6rem;
+#homepage h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-#loginbox{
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
+#homepage p {
+  font-size: 1.2rem;
+}
+
+/* Login Page */
+#login {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  /* margin-bottom: ; */
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  margin-left: 37%;
-  margin-right: 37%;
-  /* margin: 13rem; */
-  border: black solid 2px;
+}
+
+/* #loginbtn{
+  justify-self: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
   text-align: center;
-  border-radius: 20px;
   
-    
+} */
+
+#loginbox {
+  width: 90%;
+  max-width: 400px;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
 }
 
-/* Shared Button Style */
+/* QA Page */
+#askpage {
+  /* padding-top: 6rem; */
+  text-align: center;
+}
+.askhead{
+  text-align: center;
+}
+#askfield{
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#eachquestion {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 800px;
+  text-align: left;
+}
+
+#qhead {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#reply {
+  background-color: #edf2f7;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+/* Admin Page */
+#adminpage {
+  padding: 1rem;
+}
+
+.admin-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+/* Buttons */
 .btn {
   box-shadow: 0 5px 16px rgba(0,0,0,0.24), 0 17px 50px rgba(0,0,0,0.19);
   color: black;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin: .5rem;
-  background-color: white;
-  /* background-color: lavender; */
   padding: 0.6rem 1.2rem;
-  font-size: 1rem;
+  border-radius: 8px;
+  border: 4px solid #000000;
+  background-color: white;
   cursor: pointer;
   transition: 0.2s ease;
   -webkit-text-fill-color: black;
-  
 }
+
+#navbtn{
+   box-shadow: 0 5px 16px rgba(0,0,0,0.24), 0 17px 50px rgba(0,0,0,0.19);
+  color: black;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  transition: 0.2s ease;
+  -webkit-text-fill-color: black;
+}
+#navbtn:hover{
+  background-color: #e6e6fa;
+  transform: translateY(-2px);
+}
+
 
 .btn:hover {
   background-color: #e6e6fa;
   transform: translateY(-2px);
 }
 
-/* Navigation Bar */
-#nav {
-  width: 100%;
-  
-  text-align: left;
-  color: white;
-}
-
-#askpage{
-  padding-top: 0.5rem;
-}
-/* Ask Page */
-#askfield {
-  padding: 1rem 1rem;
-  max-width: 800px;
-  margin: auto;
-  text-align: left;
-  border: 1px solid black;
-  /* padding-left: 1rem; */
-}
-
-textarea {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1rem;
-  resize: vertical;
-  font-size: 1rem;
-}
-
-/* Questions */
-#eachquestion {
-  text-align: left;
-  border: 1px solid #ccc;
-  margin: 1rem 8rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-radius: 10px;
-  background-color: gray;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-}
-
-#qhead {
-  background-color: #4a5568;
-  color: white;
-  padding: 0.75rem 1rem;
-  border-radius: 6px 6px 0 0;
-  font-weight: bold;
-}
-
-#reply {
-  background-color: #edf2f7;
-  margin-bottom: 0.5rem;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #666;
-  background-color: #f0f0f0;
-  margin-top: auto;
-}
-
-/* Responsive Text Scaling */
-@media (max-width: 600px) {
-  #homepage h1 {
-    font-size: 1.5rem;
-  }
-
-  .btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-
-  #askfield {
-    padding: 1rem;
-  }
-}
-/* Ensure body doesn't scroll on homepage */
-body,
-html {
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-
-
-/* Adjust typography on mobile */
-@media (max-width: 480px) {
-  #homepage h1,
-  #homepage .MuiTypography-h2 {
-    font-size: 1.5rem;
-  }
-
-  #homepage .MuiTypography-h5 {
-    font-size: 1rem;
-  }
-
-  .btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Admin Page */
-#adminpage {
-  padding: 2rem 1rem;
-  /* max-width: 960px; */
-  margin: auto;
-  
-}
-
-.admin-heading {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #333;
-}
-
-/* .admin-question-card {
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-} */
-
-/* .admin-label {
-  font-weight: bold;
-  color: #2d3748;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-} */
-
-.admin-content {
-  background-color: #f7fafc;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  white-space: pre-wrap;
-}
-
-.admin-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-/* Delete Button Style */
 .btn.danger {
-  border: 1px solid red;
+  border-color: red;
   color: red;
-  background-color: transparent;
-  transition: 0.3s ease;
 }
 
 .btn.danger:hover {
   background-color: #ffe5e5;
-  transform: translateY(-1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  #homepage h1 {
+    font-size: 1.8rem;
+  }
+
+  #homepage p {
+    font-size: 1rem;
+  }
+
+  #loginbox {
+    padding: 1.5rem;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #eachquestion {
+    margin: 1rem 0.5rem;
+  }
+}
+
+
+
+
+/* Login Page Styling */
+.login-container {
+  height: calc(100vh - 64px);
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+}
+
+#homebtn{
+  border: black solid 4px;
+  border-radius: 10px;
+}
+
+
+/* Nav button fix on small screens */
+.nav-btn {
+  background-color: white !important;
+  color: black !important;
+  font-weight: bold;
+  min-width: 70px;
+  padding: 0.3rem 0.6rem !important;
+  font-size: 0.85rem !important;
+  transition: 0.2s ease;
+  -webkit-text-fill-color: black;
+  box-shadow: 0 5px 16px rgba(0,0,0,0.24), 0 17px 50px rgba(0,0,0,0.19);
+  /* border: black solid 4px; */
 }
 
 @media (max-width: 600px) {
+  .nav-btn {
+    min-width: auto;
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.4rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #loginbox {
+    margin: 2rem;
+    padding: 2rem;
+    width: 90%;
+  }
+
+  #eachquestion {
+    margin: 1rem;
+  }
+
   .admin-actions {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
 }

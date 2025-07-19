@@ -17,27 +17,17 @@ export default function Qa() {
 
   return (
     <div id="askpage">
-      <h1 className="text-2xl font-bold mb-6">Student Q&A</h1>
-
+      <Typography variant="h4" gutterBottom>Student Q&A</Typography>
       {questions.length === 0 ? (
         <p>No questions yet.</p>
       ) : (
         questions.map((q) => (
-          <div
-            key={q.id}
-            id="eachquestion"
-          >
-            
-              
+          <div key={q.id} id="eachquestion">
             <p id="qhead"><Typography variant="h6">🧠 Question:</Typography></p>
-              
             <p id="reply">{q.text}</p>
-            
-            
+
             <p id="qhead"><Typography variant="h6">🤖 AI Reply:</Typography></p>
-            <p id="reply">
-              {q.aiReply || "AI is thinking…"}
-            </p>
+            <p id="reply">{q.aiReply || "AI is thinking…"}</p>
 
             {q.counselorReply && (
               <>

@@ -7,7 +7,7 @@ import {
   onSnapshot,
   doc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import Button from "@mui/material/Button";
@@ -17,7 +17,7 @@ export default function Admin() {
   const [questions, setQuestions] = useState([]);
   const [reply, setReply] = useState({});
   const [status, setStatus] = useState({});
-  const [editMode, setEditMode] = useState({}); // Tracks which reply is being edited
+  const [editMode, setEditMode] = useState({});
 
   useEffect(() => {
     const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
@@ -32,7 +32,7 @@ export default function Admin() {
     setStatus((s) => ({ ...s, [id]: "saving" }));
     try {
       await updateDoc(doc(db, "questions", id), {
-        counselorReply: reply[id].trim()
+        counselorReply: reply[id].trim(),
       });
       setStatus((s) => ({ ...s, [id]: "done" }));
       setReply((r) => ({ ...r, [id]: "" }));
@@ -72,17 +72,12 @@ export default function Admin() {
             <>
               <p id="reply">{q.counselorReply}</p>
               <div className="admin-actions">
-                <Button
-                  className="btn"
-                  variant="outlined"
-                  
-                  onClick={() => startEdit(q.id, q.counselorReply)}
-                >
+                <Button className="btn" variant="outlined" onClick={() => startEdit(q.id, q.counselorReply)}>
                   Edit Reply
                 </Button>
                 <Button
-                  className="btn danger"
                   variant="outlined"
+                  className="btn danger"
                   onClick={() => deleteQuestion(q.id)}
                 >
                   Delete
@@ -104,16 +99,16 @@ export default function Admin() {
               />
               <div className="admin-actions">
                 <Button
-                  className="btn"
                   variant="contained"
+                  className="btn"
                   onClick={() => saveReply(q.id)}
                   disabled={status[q.id] === "saving"}
                 >
                   {status[q.id] === "saving" ? "Saving…" : "Save Reply"}
                 </Button>
                 <Button
-                  className="btn danger"
                   variant="outlined"
+                  className="btn danger"
                   onClick={() => deleteQuestion(q.id)}
                 >
                   Delete

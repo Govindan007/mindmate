@@ -46,8 +46,8 @@ export default function Ask() {
       </p>
     </div>
   ) : (
-    <div className="p-4 max-w-xl mx-auto">
-      <Typography variant="h4" className="mb-4 font-bold text-blue-700 text-center">
+    <div id="askpage">
+      <Typography variant="h4" className="askhead">
         Submit Your Concern
       </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

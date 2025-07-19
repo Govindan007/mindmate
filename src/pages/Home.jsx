@@ -17,9 +17,9 @@ const Home = () => {
         </Typography>
         <br/>
        <div>
-       <Link to={'/ask'} ><Button className="btn" color="inherit" >Ask</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-        <Link to={'/qa'} ><Button className="btn" color="inherit">View</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-        <Link to={'/login'} ><Button className="btn" color="inherit">Admin</Button></Link>
+       <Link to={'/ask'} ><Button className="btn" id='homebtn' color="inherit" >Ask</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/qa'} ><Button className="btn" id='homebtn' color="inherit">View</Button></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to={'/login'} ><Button className="btn" id='homebtn' color="inherit">Admin</Button></Link>
        </div>
        <br /><br />
        <footer id="footer">
