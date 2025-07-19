@@ -3,6 +3,8 @@ import { useState } from "react";
 import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { v4 as uuidv4 } from "uuid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 export default function Ask() {
   const [question, setQuestion] = useState("");
@@ -43,20 +45,26 @@ export default function Ask() {
     <div className="p-4 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Ask a Question</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <textarea
+        <TextField 
+          id="askfield"
+          variant='outlined'
           className="border rounded p-2 h-32"
           placeholder="Type your question..."
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
         />
+        <br /><br />
         {error && <p className="text-red-600">{error}</p>}
-        <button
+        <Button
+          variant='contained' 
+          color="success"
+          id="askbutton"
           type="submit"
           disabled={loading}
           className="bg-blue-600 text-white rounded py-2 hover:bg-blue-700"
         >
           {loading ? "Submitting…" : "Submit Anonymously"}
-        </button>
+        </Button>
       </form>
     </div>
   );

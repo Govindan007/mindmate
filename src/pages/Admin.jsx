@@ -6,14 +6,15 @@ import {
   orderBy,
   onSnapshot,
   doc,
-  updateDoc
+  updateDoc,
+  deleteDoc, // ✅ Import deleteDoc
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Admin() {
   const [questions, setQuestions] = useState([]);
-  const [reply, setReply] = useState({}); // id -> text
-  const [status, setStatus] = useState({}); // id -> "saving" | "done" | "err"
+  const [reply, setReply] = useState({});
+  const [status, setStatus] = useState({});
 
   useEffect(() => {
     const q = query(collection(db, "questions"), orderBy("createdAt", "desc"));
@@ -35,6 +36,16 @@ export default function Admin() {
     } catch (err) {
       console.error(err);
       setStatus((s) => ({ ...s, [id]: "err" }));
+    }
+  };
+
+  const deleteQuestion = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this question?")) return;
+    try {
+      await deleteDoc(doc(db, "questions", id));
+      console.log(`Deleted question with id: ${id}`);
+    } catch (err) {
+      console.error("Error deleting document:", err);
     }
   };
 
@@ -81,6 +92,15 @@ export default function Admin() {
               )}
             </>
           )}
+
+          <div className="mt-4">
+            <button
+              onClick={() => deleteQuestion(q.id)}
+              className="bg-red-600 text-white rounded py-1 px-4 hover:bg-red-700"
+            >
+              Delete Question
+            </button>
+          </div>
         </div>
       ))}
     </div>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
+import Typography from "@mui/material/Typography";
 
 export default function Qa() {
   const [questions, setQuestions] = useState([]);
@@ -15,30 +16,35 @@ export default function Qa() {
   }, []);
 
   return (
-    <div className="p-4 max-w-3xl mx-auto">
+    <div id="askpage">
       <h1 className="text-2xl font-bold mb-6">Student Q&A</h1>
+
       {questions.length === 0 ? (
         <p>No questions yet.</p>
       ) : (
         questions.map((q) => (
           <div
             key={q.id}
-            className="mb-6 border border-gray-300 rounded p-4 shadow"
+            id="eachquestion"
           >
-            <p className="font-semibold mb-2">🧠 Question:</p>
-            <p className="mb-4">{q.text}</p>
-
-            <p className="font-semibold mb-2 text-green-700">🤖 AI Reply:</p>
-            <p className="mb-4 whitespace-pre-wrap">
+            
+              
+            <p id="qhead"><Typography variant="h6">🧠 Question:</Typography></p>
+              
+            <p id="reply">{q.text}</p>
+            
+            
+            <p id="qhead"><Typography variant="h6">🤖 AI Reply:</Typography></p>
+            <p id="reply">
               {q.aiReply || "AI is thinking…"}
             </p>
 
             {q.counselorReply && (
               <>
-                <p className="font-semibold mb-2 text-blue-700">
-                  👨‍🏫 Counselor Reply:
+                <p id="qhead">
+                  <Typography variant="h6">👨‍🏫 Counselor Reply:</Typography>
                 </p>
-                <p className="whitespace-pre-wrap">{q.counselorReply}</p>
+                <p id="reply">{q.counselorReply}</p>
               </>
             )}
           </div>
